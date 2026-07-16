@@ -1,0 +1,2482 @@
+{
+  "compaction.md": {
+    "sha256": "2ba4c91fbe426d2c2c37ebfd3171d0c0c1caddba6d2487abb1abcb692ea1b6d7",
+    "headings": [
+      {
+        "level": 1,
+        "id": "compaction-branch-summarization"
+      },
+      {
+        "level": 2,
+        "id": "overview"
+      },
+      {
+        "level": 2,
+        "id": "compaction"
+      },
+      {
+        "level": 3,
+        "id": "when-it-triggers"
+      },
+      {
+        "level": 3,
+        "id": "how-it-works"
+      },
+      {
+        "level": 3,
+        "id": "split-turns"
+      },
+      {
+        "level": 3,
+        "id": "cut-point-rules"
+      },
+      {
+        "level": 3,
+        "id": "compactionentry-structure"
+      },
+      {
+        "level": 2,
+        "id": "branch-summarization"
+      },
+      {
+        "level": 3,
+        "id": "when-it-triggers"
+      },
+      {
+        "level": 3,
+        "id": "how-it-works"
+      },
+      {
+        "level": 3,
+        "id": "cumulative-file-tracking"
+      },
+      {
+        "level": 3,
+        "id": "branchsummaryentry-structure"
+      },
+      {
+        "level": 2,
+        "id": "summary-format"
+      },
+      {
+        "level": 3,
+        "id": "message-serialization"
+      },
+      {
+        "level": 2,
+        "id": "custom-summarization-via-extensions"
+      },
+      {
+        "level": 3,
+        "id": "sessionbeforecompact"
+      },
+      {
+        "level": 4,
+        "id": "converting-messages-to-text"
+      },
+      {
+        "level": 3,
+        "id": "sessionbeforetree"
+      },
+      {
+        "level": 2,
+        "id": "settings"
+      }
+    ]
+  },
+  "containerization.md": {
+    "sha256": "29ac379f744052adf301e744559cb43d0e6e84d1b04f4757f1710680991be10b",
+    "headings": [
+      {
+        "level": 1,
+        "id": "containerization"
+      },
+      {
+        "level": 2,
+        "id": "choose-a-pattern"
+      },
+      {
+        "level": 2,
+        "id": "gondolin"
+      },
+      {
+        "level": 2,
+        "id": "plain-docker"
+      },
+      {
+        "level": 2,
+        "id": "openshell"
+      }
+    ]
+  },
+  "custom-provider.md": {
+    "sha256": "8315bd0da07306f4319fe77c4d55b1c99418b0034578b0e71172235148bd4b24",
+    "headings": [
+      {
+        "level": 1,
+        "id": "custom-providers"
+      },
+      {
+        "level": 2,
+        "id": "example-extensions"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "quick-reference"
+      },
+      {
+        "level": 2,
+        "id": "override-existing-provider"
+      },
+      {
+        "level": 2,
+        "id": "register-new-provider"
+      },
+      {
+        "level": 2,
+        "id": "unregister-provider"
+      },
+      {
+        "level": 3,
+        "id": "api-types"
+      },
+      {
+        "level": 3,
+        "id": "auth-header"
+      },
+      {
+        "level": 2,
+        "id": "oauth-support"
+      },
+      {
+        "level": 3,
+        "id": "oauthlogincallbacks"
+      },
+      {
+        "level": 3,
+        "id": "oauthcredentials"
+      },
+      {
+        "level": 2,
+        "id": "custom-streaming-api"
+      },
+      {
+        "level": 3,
+        "id": "stream-pattern"
+      },
+      {
+        "level": 3,
+        "id": "event-types"
+      },
+      {
+        "level": 3,
+        "id": "content-blocks"
+      },
+      {
+        "level": 3,
+        "id": "tool-calls"
+      },
+      {
+        "level": 3,
+        "id": "usage-and-cost"
+      },
+      {
+        "level": 3,
+        "id": "context-overflow-errors"
+      },
+      {
+        "level": 3,
+        "id": "registration"
+      },
+      {
+        "level": 2,
+        "id": "testing-your-implementation"
+      },
+      {
+        "level": 2,
+        "id": "config-reference"
+      },
+      {
+        "level": 2,
+        "id": "model-definition-reference"
+      }
+    ]
+  },
+  "development.md": {
+    "sha256": "c8f216425e1fb084fb4323c2d9c68b60e0f1111e37575922a139c64158cc0e5d",
+    "headings": [
+      {
+        "level": 1,
+        "id": "development"
+      },
+      {
+        "level": 2,
+        "id": "setup"
+      },
+      {
+        "level": 2,
+        "id": "forking-rebranding"
+      },
+      {
+        "level": 2,
+        "id": "path-resolution"
+      },
+      {
+        "level": 2,
+        "id": "debug-command"
+      },
+      {
+        "level": 2,
+        "id": "testing"
+      },
+      {
+        "level": 2,
+        "id": "project-structure"
+      }
+    ]
+  },
+  "extensions.md": {
+    "sha256": "73dbed9fd124f71eac18d76f08962d3a00c6b0a239f9c26fbebf91fbb1704d2d",
+    "headings": [
+      {
+        "level": 1,
+        "id": "extensions"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "quick-start"
+      },
+      {
+        "level": 2,
+        "id": "extension-locations"
+      },
+      {
+        "level": 2,
+        "id": "available-imports"
+      },
+      {
+        "level": 2,
+        "id": "writing-an-extension"
+      },
+      {
+        "level": 3,
+        "id": "async-factory-functions"
+      },
+      {
+        "level": 3,
+        "id": "long-lived-resources-and-shutdown"
+      },
+      {
+        "level": 3,
+        "id": "extension-styles"
+      },
+      {
+        "level": 2,
+        "id": "events"
+      },
+      {
+        "level": 3,
+        "id": "lifecycle-overview"
+      },
+      {
+        "level": 3,
+        "id": "startup-events"
+      },
+      {
+        "level": 4,
+        "id": "projecttrust"
+      },
+      {
+        "level": 3,
+        "id": "resource-events"
+      },
+      {
+        "level": 4,
+        "id": "resourcesdiscover"
+      },
+      {
+        "level": 3,
+        "id": "session-events"
+      },
+      {
+        "level": 4,
+        "id": "sessionstart"
+      },
+      {
+        "level": 4,
+        "id": "sessioninfochanged"
+      },
+      {
+        "level": 4,
+        "id": "sessionbeforeswitch"
+      },
+      {
+        "level": 4,
+        "id": "sessionbeforefork"
+      },
+      {
+        "level": 4,
+        "id": "sessionbeforecompact-sessioncompact"
+      },
+      {
+        "level": 4,
+        "id": "sessionbeforetree-sessiontree"
+      },
+      {
+        "level": 4,
+        "id": "sessionshutdown"
+      },
+      {
+        "level": 3,
+        "id": "agent-events"
+      },
+      {
+        "level": 4,
+        "id": "beforeagentstart"
+      },
+      {
+        "level": 4,
+        "id": "agentstart-agentend-agentsettled"
+      },
+      {
+        "level": 4,
+        "id": "turnstart-turnend"
+      },
+      {
+        "level": 4,
+        "id": "messagestart-messageupdate-messageend"
+      },
+      {
+        "level": 4,
+        "id": "toolexecutionstart-toolexecutionupdate-toolexecutionend"
+      },
+      {
+        "level": 4,
+        "id": "context"
+      },
+      {
+        "level": 4,
+        "id": "beforeproviderheaders"
+      },
+      {
+        "level": 4,
+        "id": "beforeproviderrequest"
+      },
+      {
+        "level": 4,
+        "id": "afterproviderresponse"
+      },
+      {
+        "level": 3,
+        "id": "model-events"
+      },
+      {
+        "level": 4,
+        "id": "modelselect"
+      },
+      {
+        "level": 4,
+        "id": "thinkinglevelselect"
+      },
+      {
+        "level": 3,
+        "id": "tool-events"
+      },
+      {
+        "level": 4,
+        "id": "toolcall"
+      },
+      {
+        "level": 4,
+        "id": "typing-custom-tool-input"
+      },
+      {
+        "level": 4,
+        "id": "toolresult"
+      },
+      {
+        "level": 3,
+        "id": "user-bash-events"
+      },
+      {
+        "level": 4,
+        "id": "userbash"
+      },
+      {
+        "level": 3,
+        "id": "input-events"
+      },
+      {
+        "level": 4,
+        "id": "input"
+      },
+      {
+        "level": 2,
+        "id": "extensioncontext"
+      },
+      {
+        "level": 3,
+        "id": "ctxui"
+      },
+      {
+        "level": 3,
+        "id": "ctxmode"
+      },
+      {
+        "level": 3,
+        "id": "ctxhasui"
+      },
+      {
+        "level": 3,
+        "id": "ctxcwd"
+      },
+      {
+        "level": 3,
+        "id": "ctxisprojecttrusted"
+      },
+      {
+        "level": 3,
+        "id": "ctxsessionmanager"
+      },
+      {
+        "level": 3,
+        "id": "ctxmodelregistry-ctxmodel"
+      },
+      {
+        "level": 3,
+        "id": "ctxsignal"
+      },
+      {
+        "level": 3,
+        "id": "ctxisidle-ctxabort-ctxhaspendingmessages"
+      },
+      {
+        "level": 3,
+        "id": "ctxshutdown"
+      },
+      {
+        "level": 3,
+        "id": "ctxgetcontextusage"
+      },
+      {
+        "level": 3,
+        "id": "ctxcompact"
+      },
+      {
+        "level": 3,
+        "id": "ctxgetsystemprompt"
+      },
+      {
+        "level": 2,
+        "id": "extensioncommandcontext"
+      },
+      {
+        "level": 3,
+        "id": "ctxgetsystempromptoptions"
+      },
+      {
+        "level": 3,
+        "id": "ctxwaitforidle"
+      },
+      {
+        "level": 3,
+        "id": "ctxnewsessionoptions"
+      },
+      {
+        "level": 3,
+        "id": "ctxforkentryid-options"
+      },
+      {
+        "level": 3,
+        "id": "ctxnavigatetreetargetid-options"
+      },
+      {
+        "level": 3,
+        "id": "ctxswitchsessionsessionpath-options"
+      },
+      {
+        "level": 3,
+        "id": "session-replacement-lifecycle-and-footguns"
+      },
+      {
+        "level": 3,
+        "id": "ctxreload"
+      },
+      {
+        "level": 2,
+        "id": "extensionapi-methods"
+      },
+      {
+        "level": 3,
+        "id": "pionevent-handler"
+      },
+      {
+        "level": 3,
+        "id": "piregistertooldefinition"
+      },
+      {
+        "level": 3,
+        "id": "pisendmessagemessage-options"
+      },
+      {
+        "level": 3,
+        "id": "pisendusermessagecontent-options"
+      },
+      {
+        "level": 3,
+        "id": "piappendentrycustomtype-data"
+      },
+      {
+        "level": 3,
+        "id": "pisetsessionnamename"
+      },
+      {
+        "level": 3,
+        "id": "pigetsessionname"
+      },
+      {
+        "level": 3,
+        "id": "pisetlabelentryid-label"
+      },
+      {
+        "level": 3,
+        "id": "piregistercommandname-options"
+      },
+      {
+        "level": 3,
+        "id": "pigetcommands"
+      },
+      {
+        "level": 3,
+        "id": "piregistermessagerenderercustomtype-renderer"
+      },
+      {
+        "level": 3,
+        "id": "piregisterentryrenderercustomtype-renderer"
+      },
+      {
+        "level": 3,
+        "id": "piregistershortcutshortcut-options"
+      },
+      {
+        "level": 3,
+        "id": "piregisterflagname-options"
+      },
+      {
+        "level": 3,
+        "id": "piexeccommand-args-options"
+      },
+      {
+        "level": 3,
+        "id": "pigetactivetools-pigetalltools-pisetactivetoolsnames"
+      },
+      {
+        "level": 3,
+        "id": "pisetmodelmodel"
+      },
+      {
+        "level": 3,
+        "id": "pigetthinkinglevel-pisetthinkinglevellevel"
+      },
+      {
+        "level": 3,
+        "id": "pievents"
+      },
+      {
+        "level": 3,
+        "id": "piregisterprovidername-config"
+      },
+      {
+        "level": 3,
+        "id": "piunregisterprovidername"
+      },
+      {
+        "level": 2,
+        "id": "state-management"
+      },
+      {
+        "level": 2,
+        "id": "custom-tools"
+      },
+      {
+        "level": 3,
+        "id": "tool-definition"
+      },
+      {
+        "level": 3,
+        "id": "overriding-built-in-tools"
+      },
+      {
+        "level": 3,
+        "id": "remote-execution"
+      },
+      {
+        "level": 3,
+        "id": "output-truncation"
+      },
+      {
+        "level": 3,
+        "id": "multiple-tools"
+      },
+      {
+        "level": 3,
+        "id": "custom-rendering"
+      },
+      {
+        "level": 4,
+        "id": "rendercall"
+      },
+      {
+        "level": 4,
+        "id": "renderresult"
+      },
+      {
+        "level": 4,
+        "id": "keybinding-hints"
+      },
+      {
+        "level": 4,
+        "id": "best-practices"
+      },
+      {
+        "level": 4,
+        "id": "fallback"
+      },
+      {
+        "level": 3,
+        "id": "dynamic-tool-loading"
+      },
+      {
+        "level": 4,
+        "id": "models-with-native-deferred-loading"
+      },
+      {
+        "level": 4,
+        "id": "fallback-behavior"
+      },
+      {
+        "level": 4,
+        "id": "search-tool-example"
+      },
+      {
+        "level": 2,
+        "id": "custom-ui"
+      },
+      {
+        "level": 3,
+        "id": "dialogs"
+      },
+      {
+        "level": 4,
+        "id": "timed-dialogs-with-countdown"
+      },
+      {
+        "level": 4,
+        "id": "manual-dismissal-with-abortsignal"
+      },
+      {
+        "level": 3,
+        "id": "widgets-status-and-footer"
+      },
+      {
+        "level": 3,
+        "id": "autocomplete-providers"
+      },
+      {
+        "level": 3,
+        "id": "custom-components"
+      },
+      {
+        "level": 4,
+        "id": "overlay-mode-experimental"
+      },
+      {
+        "level": 3,
+        "id": "custom-editor"
+      },
+      {
+        "level": 3,
+        "id": "message-and-entry-rendering"
+      },
+      {
+        "level": 3,
+        "id": "theme-colors"
+      },
+      {
+        "level": 2,
+        "id": "error-handling"
+      },
+      {
+        "level": 2,
+        "id": "mode-behavior"
+      },
+      {
+        "level": 2,
+        "id": "examples-reference"
+      }
+    ]
+  },
+  "index.md": {
+    "sha256": "24cf68d6d92e399f6bec4be10957bd763914ff75a0d4220ef51569e7c160c6e6",
+    "headings": [
+      {
+        "level": 1,
+        "id": "pi-documentation"
+      },
+      {
+        "level": 2,
+        "id": "quick-start"
+      },
+      {
+        "level": 2,
+        "id": "start-here"
+      },
+      {
+        "level": 2,
+        "id": "customization"
+      },
+      {
+        "level": 2,
+        "id": "programmatic-usage"
+      },
+      {
+        "level": 2,
+        "id": "reference"
+      },
+      {
+        "level": 2,
+        "id": "platform-setup"
+      },
+      {
+        "level": 2,
+        "id": "development"
+      }
+    ]
+  },
+  "json.md": {
+    "sha256": "b166c616e45554db782e68a584c77f265166d0d9959e0b54f0961a3184c83426",
+    "headings": [
+      {
+        "level": 1,
+        "id": "json-event-stream-mode"
+      },
+      {
+        "level": 2,
+        "id": "event-types"
+      },
+      {
+        "level": 2,
+        "id": "message-types"
+      },
+      {
+        "level": 2,
+        "id": "output-format"
+      },
+      {
+        "level": 2,
+        "id": "example"
+      }
+    ]
+  },
+  "keybindings.md": {
+    "sha256": "2bf1c111f9d7607d9198415ad12c287f12f74ff200b8498f640a9ef602ec30d2",
+    "headings": [
+      {
+        "level": 1,
+        "id": "keybindings"
+      },
+      {
+        "level": 2,
+        "id": "key-format"
+      },
+      {
+        "level": 2,
+        "id": "all-actions"
+      },
+      {
+        "level": 3,
+        "id": "tui-editor-cursor-movement"
+      },
+      {
+        "level": 3,
+        "id": "tui-editor-deletion"
+      },
+      {
+        "level": 3,
+        "id": "tui-input"
+      },
+      {
+        "level": 3,
+        "id": "tui-kill-ring"
+      },
+      {
+        "level": 3,
+        "id": "tui-clipboard-and-selection"
+      },
+      {
+        "level": 3,
+        "id": "application"
+      },
+      {
+        "level": 3,
+        "id": "sessions"
+      },
+      {
+        "level": 3,
+        "id": "models-and-thinking"
+      },
+      {
+        "level": 3,
+        "id": "display-and-message-queue"
+      },
+      {
+        "level": 3,
+        "id": "tree-navigation"
+      },
+      {
+        "level": 3,
+        "id": "scoped-models-selector"
+      },
+      {
+        "level": 2,
+        "id": "custom-configuration"
+      },
+      {
+        "level": 3,
+        "id": "emacs-example"
+      },
+      {
+        "level": 3,
+        "id": "vim-example"
+      }
+    ]
+  },
+  "models.md": {
+    "sha256": "d3399617170c6670bd9b9b7ac7a2105f90f79b3bf505e74eb41547937953a347",
+    "headings": [
+      {
+        "level": 1,
+        "id": "custom-models"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "minimal-example"
+      },
+      {
+        "level": 2,
+        "id": "full-example"
+      },
+      {
+        "level": 2,
+        "id": "google-ai-studio-example"
+      },
+      {
+        "level": 2,
+        "id": "supported-apis"
+      },
+      {
+        "level": 2,
+        "id": "provider-configuration"
+      },
+      {
+        "level": 3,
+        "id": "value-resolution"
+      },
+      {
+        "level": 3,
+        "id": "custom-headers"
+      },
+      {
+        "level": 2,
+        "id": "model-configuration"
+      },
+      {
+        "level": 3,
+        "id": "thinking-level-map"
+      },
+      {
+        "level": 2,
+        "id": "overriding-built-in-providers"
+      },
+      {
+        "level": 2,
+        "id": "per-model-overrides"
+      },
+      {
+        "level": 2,
+        "id": "anthropic-messages-compatibility"
+      },
+      {
+        "level": 2,
+        "id": "openai-compatibility"
+      }
+    ]
+  },
+  "packages.md": {
+    "sha256": "f0780d116586c15800685d8ef96c59e89d22db4a80c3c349763989e3f48151f9",
+    "headings": [
+      {
+        "level": 1,
+        "id": "pi-packages"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "install-and-manage"
+      },
+      {
+        "level": 2,
+        "id": "package-sources"
+      },
+      {
+        "level": 3,
+        "id": "npm"
+      },
+      {
+        "level": 3,
+        "id": "git"
+      },
+      {
+        "level": 3,
+        "id": "local-paths"
+      },
+      {
+        "level": 2,
+        "id": "creating-a-pi-package"
+      },
+      {
+        "level": 3,
+        "id": "gallery-metadata"
+      },
+      {
+        "level": 2,
+        "id": "package-structure"
+      },
+      {
+        "level": 3,
+        "id": "convention-directories"
+      },
+      {
+        "level": 2,
+        "id": "dependencies"
+      },
+      {
+        "level": 2,
+        "id": "package-filtering"
+      },
+      {
+        "level": 2,
+        "id": "enable-and-disable-resources"
+      },
+      {
+        "level": 2,
+        "id": "scope-and-deduplication"
+      }
+    ]
+  },
+  "prompt-templates.md": {
+    "sha256": "0346823712eb033333a5d5bab1ea17a3e70a911670db1342df0df0c8bc75bdc4",
+    "headings": [
+      {
+        "level": 1,
+        "id": "prompt-templates"
+      },
+      {
+        "level": 2,
+        "id": "locations"
+      },
+      {
+        "level": 2,
+        "id": "format"
+      },
+      {
+        "level": 3,
+        "id": "argument-hints"
+      },
+      {
+        "level": 2,
+        "id": "usage"
+      },
+      {
+        "level": 2,
+        "id": "arguments"
+      },
+      {
+        "level": 2,
+        "id": "loading-rules"
+      }
+    ]
+  },
+  "providers.md": {
+    "sha256": "7e3cbbe5e83b408e76717e3244848db6b623266d6a09d113f4dc8f4499268b75",
+    "headings": [
+      {
+        "level": 1,
+        "id": "providers"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "subscriptions"
+      },
+      {
+        "level": 3,
+        "id": "openai-codex"
+      },
+      {
+        "level": 3,
+        "id": "claude-promax"
+      },
+      {
+        "level": 3,
+        "id": "github-copilot"
+      },
+      {
+        "level": 3,
+        "id": "xai-grokx-subscription"
+      },
+      {
+        "level": 3,
+        "id": "radius"
+      },
+      {
+        "level": 2,
+        "id": "api-keys"
+      },
+      {
+        "level": 3,
+        "id": "environment-variables-or-auth-file"
+      },
+      {
+        "level": 4,
+        "id": "auth-file"
+      },
+      {
+        "level": 3,
+        "id": "key-resolution"
+      },
+      {
+        "level": 2,
+        "id": "cloud-providers"
+      },
+      {
+        "level": 3,
+        "id": "azure-openai"
+      },
+      {
+        "level": 3,
+        "id": "amazon-bedrock"
+      },
+      {
+        "level": 3,
+        "id": "cloudflare-ai-gateway"
+      },
+      {
+        "level": 3,
+        "id": "cloudflare-workers-ai"
+      },
+      {
+        "level": 3,
+        "id": "google-vertex-ai"
+      },
+      {
+        "level": 2,
+        "id": "custom-providers"
+      },
+      {
+        "level": 2,
+        "id": "resolution-order"
+      }
+    ]
+  },
+  "quickstart.md": {
+    "sha256": "2f1babcbcf36f18e8534d7feb0306a1eaf59330eca7d6ff405e87b3c8f82d942",
+    "headings": [
+      {
+        "level": 1,
+        "id": "quickstart"
+      },
+      {
+        "level": 2,
+        "id": "install"
+      },
+      {
+        "level": 3,
+        "id": "uninstall"
+      },
+      {
+        "level": 2,
+        "id": "authenticate"
+      },
+      {
+        "level": 3,
+        "id": "option-1-subscription-login"
+      },
+      {
+        "level": 3,
+        "id": "option-2-api-key"
+      },
+      {
+        "level": 2,
+        "id": "first-session"
+      },
+      {
+        "level": 2,
+        "id": "give-pi-project-instructions"
+      },
+      {
+        "level": 2,
+        "id": "common-things-to-try"
+      },
+      {
+        "level": 3,
+        "id": "reference-files"
+      },
+      {
+        "level": 3,
+        "id": "run-shell-commands"
+      },
+      {
+        "level": 3,
+        "id": "switch-models"
+      },
+      {
+        "level": 3,
+        "id": "continue-later"
+      },
+      {
+        "level": 3,
+        "id": "non-interactive-mode"
+      },
+      {
+        "level": 2,
+        "id": "next-steps"
+      }
+    ]
+  },
+  "rpc.md": {
+    "sha256": "0078a7740e6c471b0f6e3d5ecb1692088b31bcd04ff0c3be6f1f4ed8f98a5440",
+    "headings": [
+      {
+        "level": 1,
+        "id": "rpc-mode"
+      },
+      {
+        "level": 2,
+        "id": "starting-rpc-mode"
+      },
+      {
+        "level": 2,
+        "id": "protocol-overview"
+      },
+      {
+        "level": 3,
+        "id": "framing"
+      },
+      {
+        "level": 2,
+        "id": "commands"
+      },
+      {
+        "level": 3,
+        "id": "prompting"
+      },
+      {
+        "level": 4,
+        "id": "prompt"
+      },
+      {
+        "level": 4,
+        "id": "steer"
+      },
+      {
+        "level": 4,
+        "id": "followup"
+      },
+      {
+        "level": 4,
+        "id": "abort"
+      },
+      {
+        "level": 4,
+        "id": "newsession"
+      },
+      {
+        "level": 3,
+        "id": "state"
+      },
+      {
+        "level": 4,
+        "id": "getstate"
+      },
+      {
+        "level": 4,
+        "id": "getmessages"
+      },
+      {
+        "level": 3,
+        "id": "model"
+      },
+      {
+        "level": 4,
+        "id": "setmodel"
+      },
+      {
+        "level": 4,
+        "id": "cyclemodel"
+      },
+      {
+        "level": 4,
+        "id": "getavailablemodels"
+      },
+      {
+        "level": 3,
+        "id": "thinking"
+      },
+      {
+        "level": 4,
+        "id": "setthinkinglevel"
+      },
+      {
+        "level": 4,
+        "id": "cyclethinkinglevel"
+      },
+      {
+        "level": 3,
+        "id": "queue-modes"
+      },
+      {
+        "level": 4,
+        "id": "setsteeringmode"
+      },
+      {
+        "level": 4,
+        "id": "setfollowupmode"
+      },
+      {
+        "level": 3,
+        "id": "compaction"
+      },
+      {
+        "level": 4,
+        "id": "compact"
+      },
+      {
+        "level": 4,
+        "id": "setautocompaction"
+      },
+      {
+        "level": 3,
+        "id": "retry"
+      },
+      {
+        "level": 4,
+        "id": "setautoretry"
+      },
+      {
+        "level": 4,
+        "id": "abortretry"
+      },
+      {
+        "level": 3,
+        "id": "bash"
+      },
+      {
+        "level": 4,
+        "id": "bash"
+      },
+      {
+        "level": 4,
+        "id": "abortbash"
+      },
+      {
+        "level": 3,
+        "id": "session"
+      },
+      {
+        "level": 4,
+        "id": "getsessionstats"
+      },
+      {
+        "level": 4,
+        "id": "exporthtml"
+      },
+      {
+        "level": 4,
+        "id": "switchsession"
+      },
+      {
+        "level": 4,
+        "id": "fork"
+      },
+      {
+        "level": 4,
+        "id": "clone"
+      },
+      {
+        "level": 4,
+        "id": "getforkmessages"
+      },
+      {
+        "level": 4,
+        "id": "getentries"
+      },
+      {
+        "level": 4,
+        "id": "gettree"
+      },
+      {
+        "level": 4,
+        "id": "getlastassistanttext"
+      },
+      {
+        "level": 4,
+        "id": "setsessionname"
+      },
+      {
+        "level": 3,
+        "id": "commands"
+      },
+      {
+        "level": 4,
+        "id": "getcommands"
+      },
+      {
+        "level": 2,
+        "id": "events"
+      },
+      {
+        "level": 3,
+        "id": "event-types"
+      },
+      {
+        "level": 3,
+        "id": "agentstart"
+      },
+      {
+        "level": 3,
+        "id": "agentend"
+      },
+      {
+        "level": 3,
+        "id": "agentsettled"
+      },
+      {
+        "level": 3,
+        "id": "turnstart-turnend"
+      },
+      {
+        "level": 3,
+        "id": "messagestart-messageend"
+      },
+      {
+        "level": 3,
+        "id": "messageupdate-streaming"
+      },
+      {
+        "level": 3,
+        "id": "toolexecutionstart-toolexecutionupdate-toolexecutionend"
+      },
+      {
+        "level": 3,
+        "id": "queueupdate"
+      },
+      {
+        "level": 3,
+        "id": "compactionstart-compactionend"
+      },
+      {
+        "level": 3,
+        "id": "autoretrystart-autoretryend"
+      },
+      {
+        "level": 3,
+        "id": "extensionerror"
+      },
+      {
+        "level": 2,
+        "id": "extension-ui-protocol"
+      },
+      {
+        "level": 3,
+        "id": "extension-ui-requests-stdout"
+      },
+      {
+        "level": 4,
+        "id": "select"
+      },
+      {
+        "level": 4,
+        "id": "confirm"
+      },
+      {
+        "level": 4,
+        "id": "input"
+      },
+      {
+        "level": 4,
+        "id": "editor"
+      },
+      {
+        "level": 4,
+        "id": "notify"
+      },
+      {
+        "level": 4,
+        "id": "setstatus"
+      },
+      {
+        "level": 4,
+        "id": "setwidget"
+      },
+      {
+        "level": 4,
+        "id": "settitle"
+      },
+      {
+        "level": 4,
+        "id": "seteditortext"
+      },
+      {
+        "level": 3,
+        "id": "extension-ui-responses-stdin"
+      },
+      {
+        "level": 4,
+        "id": "value-response-select-input-editor"
+      },
+      {
+        "level": 4,
+        "id": "confirmation-response-confirm"
+      },
+      {
+        "level": 4,
+        "id": "cancellation-response-any-dialog"
+      },
+      {
+        "level": 2,
+        "id": "error-handling"
+      },
+      {
+        "level": 2,
+        "id": "types"
+      },
+      {
+        "level": 3,
+        "id": "model"
+      },
+      {
+        "level": 3,
+        "id": "usermessage"
+      },
+      {
+        "level": 3,
+        "id": "assistantmessage"
+      },
+      {
+        "level": 3,
+        "id": "toolresultmessage"
+      },
+      {
+        "level": 3,
+        "id": "bashexecutionmessage"
+      },
+      {
+        "level": 3,
+        "id": "attachment"
+      },
+      {
+        "level": 2,
+        "id": "example-basic-client-python"
+      },
+      {
+        "level": 2,
+        "id": "example-interactive-client-nodejs"
+      }
+    ]
+  },
+  "sdk.md": {
+    "sha256": "3fc83f660ccd37d392256cd894c390c84ad3386f5be76db316b1553ab99040d3",
+    "headings": [
+      {
+        "level": 1,
+        "id": "sdk"
+      },
+      {
+        "level": 2,
+        "id": "quick-start"
+      },
+      {
+        "level": 2,
+        "id": "installation"
+      },
+      {
+        "level": 2,
+        "id": "core-concepts"
+      },
+      {
+        "level": 3,
+        "id": "createagentsession"
+      },
+      {
+        "level": 3,
+        "id": "agentsession"
+      },
+      {
+        "level": 3,
+        "id": "createagentsessionruntime-and-agentsessionruntime"
+      },
+      {
+        "level": 3,
+        "id": "prompting-and-message-queueing"
+      },
+      {
+        "level": 3,
+        "id": "agent-and-agentstate"
+      },
+      {
+        "level": 3,
+        "id": "events"
+      },
+      {
+        "level": 2,
+        "id": "options-reference"
+      },
+      {
+        "level": 3,
+        "id": "directories"
+      },
+      {
+        "level": 3,
+        "id": "model"
+      },
+      {
+        "level": 3,
+        "id": "api-keys-and-oauth"
+      },
+      {
+        "level": 3,
+        "id": "system-prompt"
+      },
+      {
+        "level": 3,
+        "id": "tools"
+      },
+      {
+        "level": 4,
+        "id": "tools-with-custom-cwd"
+      },
+      {
+        "level": 3,
+        "id": "custom-tools"
+      },
+      {
+        "level": 3,
+        "id": "extensions"
+      },
+      {
+        "level": 3,
+        "id": "skills"
+      },
+      {
+        "level": 3,
+        "id": "context-files"
+      },
+      {
+        "level": 3,
+        "id": "slash-commands"
+      },
+      {
+        "level": 3,
+        "id": "session-management"
+      },
+      {
+        "level": 3,
+        "id": "settings-management"
+      },
+      {
+        "level": 2,
+        "id": "resourceloader"
+      },
+      {
+        "level": 2,
+        "id": "return-value"
+      },
+      {
+        "level": 2,
+        "id": "complete-example"
+      },
+      {
+        "level": 2,
+        "id": "run-modes"
+      },
+      {
+        "level": 3,
+        "id": "interactivemode"
+      },
+      {
+        "level": 3,
+        "id": "runprintmode"
+      },
+      {
+        "level": 3,
+        "id": "runrpcmode"
+      },
+      {
+        "level": 2,
+        "id": "rpc-mode-alternative"
+      },
+      {
+        "level": 2,
+        "id": "exports"
+      }
+    ]
+  },
+  "security.md": {
+    "sha256": "50ec5ce4c92db862ba56099a5262d30e7745cd4f7abcd36df1b3dc05fb12fa9d",
+    "headings": [
+      {
+        "level": 1,
+        "id": "security"
+      },
+      {
+        "level": 2,
+        "id": "project-trust"
+      },
+      {
+        "level": 2,
+        "id": "no-built-in-sandbox"
+      },
+      {
+        "level": 2,
+        "id": "running-untrusted-or-unmonitored-work"
+      },
+      {
+        "level": 2,
+        "id": "reporting-security-issues"
+      }
+    ]
+  },
+  "session-format.md": {
+    "sha256": "8c9b05fc65ee5539cfdd14f250a0d153d2a0594490bb3792917271b237264ed5",
+    "headings": [
+      {
+        "level": 1,
+        "id": "session-file-format"
+      },
+      {
+        "level": 2,
+        "id": "file-location"
+      },
+      {
+        "level": 2,
+        "id": "deleting-sessions"
+      },
+      {
+        "level": 2,
+        "id": "session-version"
+      },
+      {
+        "level": 2,
+        "id": "source-files"
+      },
+      {
+        "level": 2,
+        "id": "message-types"
+      },
+      {
+        "level": 3,
+        "id": "content-blocks"
+      },
+      {
+        "level": 3,
+        "id": "base-message-types-from-pi-ai"
+      },
+      {
+        "level": 3,
+        "id": "extended-message-types-from-pi-coding-agent"
+      },
+      {
+        "level": 3,
+        "id": "agentmessage-union"
+      },
+      {
+        "level": 2,
+        "id": "entry-base"
+      },
+      {
+        "level": 2,
+        "id": "entry-types"
+      },
+      {
+        "level": 3,
+        "id": "sessionheader"
+      },
+      {
+        "level": 3,
+        "id": "sessionmessageentry"
+      },
+      {
+        "level": 3,
+        "id": "modelchangeentry"
+      },
+      {
+        "level": 3,
+        "id": "thinkinglevelchangeentry"
+      },
+      {
+        "level": 3,
+        "id": "compactionentry"
+      },
+      {
+        "level": 3,
+        "id": "branchsummaryentry"
+      },
+      {
+        "level": 3,
+        "id": "customentry"
+      },
+      {
+        "level": 3,
+        "id": "custommessageentry"
+      },
+      {
+        "level": 3,
+        "id": "labelentry"
+      },
+      {
+        "level": 3,
+        "id": "sessioninfoentry"
+      },
+      {
+        "level": 2,
+        "id": "tree-structure"
+      },
+      {
+        "level": 2,
+        "id": "context-building"
+      },
+      {
+        "level": 2,
+        "id": "parsing-example"
+      },
+      {
+        "level": 2,
+        "id": "sessionmanager-api"
+      },
+      {
+        "level": 3,
+        "id": "static-creation-methods"
+      },
+      {
+        "level": 3,
+        "id": "static-listing-methods"
+      },
+      {
+        "level": 3,
+        "id": "instance-methods-session-management"
+      },
+      {
+        "level": 3,
+        "id": "instance-methods-appending-all-return-entry-id"
+      },
+      {
+        "level": 3,
+        "id": "instance-methods-tree-navigation"
+      },
+      {
+        "level": 3,
+        "id": "instance-methods-context-info"
+      }
+    ]
+  },
+  "sessions.md": {
+    "sha256": "b4ed96521936b5b4ba464496d096bd6c345803f3fa63b5a647674af068cd83b2",
+    "headings": [
+      {
+        "level": 1,
+        "id": "sessions"
+      },
+      {
+        "level": 2,
+        "id": "session-storage"
+      },
+      {
+        "level": 2,
+        "id": "session-commands"
+      },
+      {
+        "level": 2,
+        "id": "resuming-and-deleting-sessions"
+      },
+      {
+        "level": 2,
+        "id": "naming-sessions"
+      },
+      {
+        "level": 2,
+        "id": "branching-with-tree"
+      },
+      {
+        "level": 3,
+        "id": "tree-controls"
+      },
+      {
+        "level": 3,
+        "id": "selection-behavior"
+      },
+      {
+        "level": 2,
+        "id": "tree-fork-and-clone"
+      },
+      {
+        "level": 2,
+        "id": "branch-summaries"
+      },
+      {
+        "level": 2,
+        "id": "session-format"
+      }
+    ]
+  },
+  "settings.md": {
+    "sha256": "1136ebf2576d833645b700191436a698bc748af3c890d8522c1df9350d2af833",
+    "headings": [
+      {
+        "level": 1,
+        "id": "settings"
+      },
+      {
+        "level": 2,
+        "id": "project-trust"
+      },
+      {
+        "level": 2,
+        "id": "all-settings"
+      },
+      {
+        "level": 3,
+        "id": "model-thinking"
+      },
+      {
+        "level": 4,
+        "id": "thinkingbudgets"
+      },
+      {
+        "level": 3,
+        "id": "ui-display"
+      },
+      {
+        "level": 3,
+        "id": "telemetry-and-update-checks"
+      },
+      {
+        "level": 3,
+        "id": "network"
+      },
+      {
+        "level": 3,
+        "id": "warnings"
+      },
+      {
+        "level": 3,
+        "id": "compaction"
+      },
+      {
+        "level": 3,
+        "id": "branch-summary"
+      },
+      {
+        "level": 3,
+        "id": "retry"
+      },
+      {
+        "level": 3,
+        "id": "message-delivery"
+      },
+      {
+        "level": 3,
+        "id": "terminal-images"
+      },
+      {
+        "level": 3,
+        "id": "shell"
+      },
+      {
+        "level": 3,
+        "id": "sessions"
+      },
+      {
+        "level": 3,
+        "id": "model-cycling"
+      },
+      {
+        "level": 3,
+        "id": "markdown"
+      },
+      {
+        "level": 3,
+        "id": "resources"
+      },
+      {
+        "level": 4,
+        "id": "packages"
+      },
+      {
+        "level": 2,
+        "id": "example"
+      },
+      {
+        "level": 2,
+        "id": "project-overrides"
+      }
+    ]
+  },
+  "shell-aliases.md": {
+    "sha256": "adead5083689ca9d14fa32f2a3db0bd4d6963a91a1a00d060d5b49c420f257ae",
+    "headings": [
+      {
+        "level": 1,
+        "id": "shell-aliases"
+      }
+    ]
+  },
+  "skills.md": {
+    "sha256": "de38956dcdb3f060b62a891c23b5c0facc568d26039cd0addd6d5adfbed2762f",
+    "headings": [
+      {
+        "level": 1,
+        "id": "skills"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "locations"
+      },
+      {
+        "level": 3,
+        "id": "using-skills-from-other-harnesses"
+      },
+      {
+        "level": 2,
+        "id": "how-skills-work"
+      },
+      {
+        "level": 2,
+        "id": "skill-commands"
+      },
+      {
+        "level": 2,
+        "id": "skill-structure"
+      },
+      {
+        "level": 3,
+        "id": "skillmd-format"
+      },
+      {
+        "level": 2,
+        "id": "frontmatter"
+      },
+      {
+        "level": 3,
+        "id": "name-rules"
+      },
+      {
+        "level": 3,
+        "id": "description-best-practices"
+      },
+      {
+        "level": 2,
+        "id": "validation"
+      },
+      {
+        "level": 2,
+        "id": "example"
+      },
+      {
+        "level": 2,
+        "id": "skill-repositories"
+      }
+    ]
+  },
+  "terminal-setup.md": {
+    "sha256": "1c024fd4f02c53ccbe934aa60d30c62f303535fad353093ad4eed61dd3dae4f1",
+    "headings": [
+      {
+        "level": 1,
+        "id": "terminal-setup"
+      },
+      {
+        "level": 2,
+        "id": "kitty-iterm2"
+      },
+      {
+        "level": 2,
+        "id": "apple-terminal"
+      },
+      {
+        "level": 2,
+        "id": "ghostty"
+      },
+      {
+        "level": 2,
+        "id": "wezterm"
+      },
+      {
+        "level": 2,
+        "id": "alacritty"
+      },
+      {
+        "level": 2,
+        "id": "vs-code-integrated-terminal"
+      },
+      {
+        "level": 2,
+        "id": "windows-terminal"
+      },
+      {
+        "level": 2,
+        "id": "xfce4-terminal-terminator"
+      },
+      {
+        "level": 2,
+        "id": "intellij-idea-integrated-terminal"
+      }
+    ]
+  },
+  "termux.md": {
+    "sha256": "471c4aff3e2004e7de5387737f728ede4c4c6ac1ccf51575ff4ef2fdbd52c3ce",
+    "headings": [
+      {
+        "level": 1,
+        "id": "termux-android-setup"
+      },
+      {
+        "level": 2,
+        "id": "prerequisites"
+      },
+      {
+        "level": 2,
+        "id": "installation"
+      },
+      {
+        "level": 2,
+        "id": "clipboard-support"
+      },
+      {
+        "level": 2,
+        "id": "example-agentsmd-for-termux"
+      },
+      {
+        "level": 2,
+        "id": "limitations"
+      },
+      {
+        "level": 2,
+        "id": "troubleshooting"
+      },
+      {
+        "level": 3,
+        "id": "clipboard-not-working"
+      },
+      {
+        "level": 3,
+        "id": "permission-denied-for-shared-storage"
+      },
+      {
+        "level": 3,
+        "id": "nodejs-installation-issues"
+      }
+    ]
+  },
+  "themes.md": {
+    "sha256": "683f45c90b8dfd920cab4d9ca44ece25c4c3680fa13247407a93673d251b5e3d",
+    "headings": [
+      {
+        "level": 1,
+        "id": "themes"
+      },
+      {
+        "level": 2,
+        "id": "table-of-contents"
+      },
+      {
+        "level": 2,
+        "id": "locations"
+      },
+      {
+        "level": 2,
+        "id": "selecting-a-theme"
+      },
+      {
+        "level": 2,
+        "id": "creating-a-custom-theme"
+      },
+      {
+        "level": 2,
+        "id": "theme-format"
+      },
+      {
+        "level": 2,
+        "id": "color-tokens"
+      },
+      {
+        "level": 3,
+        "id": "core-ui-11-colors"
+      },
+      {
+        "level": 3,
+        "id": "backgrounds-content-11-colors"
+      },
+      {
+        "level": 3,
+        "id": "markdown-10-colors"
+      },
+      {
+        "level": 3,
+        "id": "tool-diffs-3-colors"
+      },
+      {
+        "level": 3,
+        "id": "syntax-highlighting-9-colors"
+      },
+      {
+        "level": 3,
+        "id": "thinking-level-borders-6-required-1-optional"
+      },
+      {
+        "level": 3,
+        "id": "bash-mode-1-color"
+      },
+      {
+        "level": 3,
+        "id": "html-export-optional"
+      },
+      {
+        "level": 2,
+        "id": "color-values"
+      },
+      {
+        "level": 3,
+        "id": "256-color-palette"
+      },
+      {
+        "level": 3,
+        "id": "terminal-compatibility"
+      },
+      {
+        "level": 2,
+        "id": "tips"
+      },
+      {
+        "level": 2,
+        "id": "examples"
+      }
+    ]
+  },
+  "tmux.md": {
+    "sha256": "1fa5373d65c3fac2e2afe5ba3174d4c265076a6832e2f42a79ac033a42a57030",
+    "headings": [
+      {
+        "level": 1,
+        "id": "tmux-setup"
+      },
+      {
+        "level": 2,
+        "id": "recommended-configuration"
+      },
+      {
+        "level": 2,
+        "id": "why-csi-u-is-recommended"
+      },
+      {
+        "level": 2,
+        "id": "what-this-fixes"
+      },
+      {
+        "level": 2,
+        "id": "requirements"
+      }
+    ]
+  },
+  "tui.md": {
+    "sha256": "9efd6c375da2e0c060b7be0253771873c119cd6e5b1b24a4bfb07082592ae110",
+    "headings": [
+      {
+        "level": 1,
+        "id": "tui-components"
+      },
+      {
+        "level": 2,
+        "id": "component-interface"
+      },
+      {
+        "level": 2,
+        "id": "focusable-interface-ime-support"
+      },
+      {
+        "level": 3,
+        "id": "container-components-with-embedded-inputs"
+      },
+      {
+        "level": 2,
+        "id": "using-components"
+      },
+      {
+        "level": 2,
+        "id": "overlays"
+      },
+      {
+        "level": 3,
+        "id": "overlay-focus"
+      },
+      {
+        "level": 3,
+        "id": "overlay-lifecycle"
+      },
+      {
+        "level": 2,
+        "id": "built-in-components"
+      },
+      {
+        "level": 3,
+        "id": "text"
+      },
+      {
+        "level": 3,
+        "id": "box"
+      },
+      {
+        "level": 3,
+        "id": "container"
+      },
+      {
+        "level": 3,
+        "id": "spacer"
+      },
+      {
+        "level": 3,
+        "id": "markdown"
+      },
+      {
+        "level": 3,
+        "id": "image"
+      },
+      {
+        "level": 2,
+        "id": "keyboard-input"
+      },
+      {
+        "level": 2,
+        "id": "line-width"
+      },
+      {
+        "level": 2,
+        "id": "creating-custom-components"
+      },
+      {
+        "level": 2,
+        "id": "theming"
+      },
+      {
+        "level": 2,
+        "id": "debug-logging"
+      },
+      {
+        "level": 2,
+        "id": "performance"
+      },
+      {
+        "level": 2,
+        "id": "invalidation-and-theme-changes"
+      },
+      {
+        "level": 3,
+        "id": "the-problem"
+      },
+      {
+        "level": 3,
+        "id": "the-solution"
+      },
+      {
+        "level": 3,
+        "id": "pattern-rebuild-on-invalidate"
+      },
+      {
+        "level": 3,
+        "id": "when-this-matters"
+      },
+      {
+        "level": 2,
+        "id": "common-patterns"
+      },
+      {
+        "level": 3,
+        "id": "pattern-1-selection-dialog-selectlist"
+      },
+      {
+        "level": 3,
+        "id": "pattern-2-async-operation-with-cancel-borderedloader"
+      },
+      {
+        "level": 3,
+        "id": "pattern-3-settingstoggles-settingslist"
+      },
+      {
+        "level": 3,
+        "id": "pattern-4-persistent-status-indicator"
+      },
+      {
+        "level": 3,
+        "id": "pattern-4b-working-indicator-customization"
+      },
+      {
+        "level": 3,
+        "id": "pattern-5-widgets-abovebelow-editor"
+      },
+      {
+        "level": 3,
+        "id": "pattern-6-custom-footer"
+      },
+      {
+        "level": 3,
+        "id": "pattern-7-custom-editor-vim-mode-etc"
+      },
+      {
+        "level": 2,
+        "id": "key-rules"
+      },
+      {
+        "level": 2,
+        "id": "examples"
+      }
+    ]
+  },
+  "usage.md": {
+    "sha256": "35e4036c63b529c08271d58c365f4e792dc86860a7bffd3ad7dd1a52e1d740cc",
+    "headings": [
+      {
+        "level": 1,
+        "id": "using-pi"
+      },
+      {
+        "level": 2,
+        "id": "interactive-mode"
+      },
+      {
+        "level": 3,
+        "id": "editor-features"
+      },
+      {
+        "level": 2,
+        "id": "slash-commands"
+      },
+      {
+        "level": 2,
+        "id": "message-queue"
+      },
+      {
+        "level": 2,
+        "id": "sessions"
+      },
+      {
+        "level": 2,
+        "id": "context-files"
+      },
+      {
+        "level": 3,
+        "id": "system-prompt-files"
+      },
+      {
+        "level": 3,
+        "id": "project-trust"
+      },
+      {
+        "level": 2,
+        "id": "exporting-and-sharing-sessions"
+      },
+      {
+        "level": 2,
+        "id": "cli-reference"
+      },
+      {
+        "level": 3,
+        "id": "package-commands"
+      },
+      {
+        "level": 3,
+        "id": "modes"
+      },
+      {
+        "level": 3,
+        "id": "model-options"
+      },
+      {
+        "level": 3,
+        "id": "session-options"
+      },
+      {
+        "level": 3,
+        "id": "tool-options"
+      },
+      {
+        "level": 3,
+        "id": "resource-options"
+      },
+      {
+        "level": 3,
+        "id": "other-options"
+      },
+      {
+        "level": 3,
+        "id": "file-arguments"
+      },
+      {
+        "level": 3,
+        "id": "examples"
+      },
+      {
+        "level": 3,
+        "id": "environment-variables"
+      },
+      {
+        "level": 2,
+        "id": "design-principles"
+      }
+    ]
+  },
+  "windows.md": {
+    "sha256": "506b1cbcc4b1503e3d66a0f3830c2934fc4b1febcd2cf4f4258aa195284c65cd",
+    "headings": [
+      {
+        "level": 1,
+        "id": "windows-setup"
+      },
+      {
+        "level": 2,
+        "id": "custom-shell-path"
+      }
+    ]
+  }
+}

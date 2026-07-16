@@ -1,87 +1,52 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
+const root = new URL("../", import.meta.url);
+const contentRoot = new URL("content/", root);
+const docsRoot = new URL("docs/", contentRoot);
+async function json(url) { return JSON.parse(await readFile(url, "utf8")); }
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  return worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-}
-
-test("server-renders the starter loading skeleton", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
-  const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Codex is working/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(html, /Codex is building the first version/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+test("官方导航中的 28 个页面均有完整中文 Markdown", async () => {
+  const navigation = await json(new URL("navigation.json", contentRoot));
+  const items = navigation.flatMap((group) => group.items).filter((item) => item.path.endsWith(".md"));
+  assert.equal(items.length, 28);
+  for (const item of items) {
+    const markdown = await readFile(new URL(item.path, docsRoot), "utf8");
+    assert.match(markdown, /^#\s+.+/m, `${item.path} 缺少一级标题`);
+    assert.match(markdown, /[\u3400-\u9fff]/, `${item.path} 缺少中文正文`);
+    assert.doesNotMatch(markdown, /�|锟斤拷/, `${item.path} 包含乱码`);
+  }
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
-    readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
+test("所有站内文档链接与图片均指向实际资源", async () => {
+  const navigation = await json(new URL("navigation.json", contentRoot));
+  const paths = new Set(navigation.flatMap((group) => group.items).map((item) => item.path));
+  for (const path of [...paths].filter((value) => value.endsWith(".md"))) {
+    const markdown = await readFile(new URL(path, docsRoot), "utf8");
+    for (const match of markdown.matchAll(/\[[^\]]*\]\((?!https?:|mailto:|#)([^/)#?]+\.md)(?:#[^)]+)?\)/g)) {
+      assert.ok(paths.has(match[1].replace(/^\.\//, "")), `${path} 指向不存在的 ${match[1]}`);
+    }
+    for (const match of markdown.matchAll(/(?:!\[[^\]]*\]\(|<img[^>]+src=["'])(images\/[^)"']+)/g)) {
+      await access(new URL(match[1].replace("images/", "public/docs-images/"), root));
+    }
+  }
+});
+
+test("生成数据包含固定上游版本与站内变更日志", async () => {
+  const generated = await json(new URL("app/generated-docs.json", root));
+  assert.equal(generated.source.version, "0.80.8");
+  assert.equal(generated.source.commit, "e022eec37dee52790564f3af93819c34f3f78af1");
+  assert.equal(Object.keys(generated.docs).length, 28);
+  assert.ok(generated.navigation.some((group) => group.items.some((item) => item.path === "changelog")));
+  assert.ok(generated.changelog.some((entry) => entry.version === generated.source.version));
+});
+
+test("两套构建产物存在且不包含旧启动骨架", async () => {
+  const [pagesHtml, workerEntry] = await Promise.all([
+    readFile(new URL("dist-pages/index.html", root), "utf8"),
+    readFile(new URL("dist/server/index.js", root), "utf8"),
   ]);
-
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
-
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
-
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
-
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+  assert.match(pagesHtml, /<div id="root"><\/div>/);
+  assert.doesNotMatch(pagesHtml + workerEntry, /codex-preview|SkeletonPreview/);
 });

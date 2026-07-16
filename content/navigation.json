@@ -1,0 +1,17 @@
+[
+  {"title":"从这里开始","items":[
+    {"title":"概览","path":"index.md"},{"title":"快速开始","path":"quickstart.md"},{"title":"使用 Pi","path":"usage.md"},{"title":"提供商","path":"providers.md"},{"title":"安全","path":"security.md"},{"title":"容器化","path":"containerization.md"},{"title":"设置","path":"settings.md"},{"title":"快捷键","path":"keybindings.md"},{"title":"会话","path":"sessions.md"},{"title":"上下文压缩","path":"compaction.md"}
+  ]},
+  {"title":"自定义","items":[
+    {"title":"扩展","path":"extensions.md"},{"title":"技能","path":"skills.md"},{"title":"提示词模板","path":"prompt-templates.md"},{"title":"主题","path":"themes.md"},{"title":"Pi 包","path":"packages.md"},{"title":"自定义模型","path":"models.md"},{"title":"自定义提供商","path":"custom-provider.md"}
+  ]},
+  {"title":"参考","items":[{"title":"会话格式","path":"session-format.md"}]},
+  {"title":"编程式使用","items":[
+    {"title":"SDK","path":"sdk.md"},{"title":"RPC 模式","path":"rpc.md"},{"title":"JSON 事件流模式","path":"json.md"},{"title":"TUI 组件","path":"tui.md"}
+  ]},
+  {"title":"平台设置","items":[
+    {"title":"Windows","path":"windows.md"},{"title":"Android 上的 Termux","path":"termux.md"},{"title":"tmux","path":"tmux.md"},{"title":"终端设置","path":"terminal-setup.md"},{"title":"Shell 别名","path":"shell-aliases.md"}
+  ]},
+  {"title":"开发","items":[{"title":"开发指南","path":"development.md"}]},
+  {"title":"项目","items":[{"title":"中文文档变更日志","path":"changelog"}]}
+]
