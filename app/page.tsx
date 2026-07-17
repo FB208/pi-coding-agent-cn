@@ -4,14 +4,10 @@ import { isValidElement, useEffect, useMemo, useState, type ReactNode } from "re
 import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import { resolveDocHref, slugifyHeading } from "../lib/doc-links.mjs";
 import generated from "./generated-docs.json";
 
 type Doc = (typeof generated.docs)[keyof typeof generated.docs];
-
-/** 生成兼容中英文标题的稳定锚点。 */
-function slugify(value: string): string {
-  return value.toLowerCase().trim().replace(/<[^>]+>/g, "").replace(/[^\p{L}\p{N}\s-]/gu, "").replace(/\s+/g, "-").replace(/-+/g, "-");
-}
 
 /** 提取 React 子节点中的纯文本。 */
 function nodeText(node: ReactNode): string {
@@ -19,6 +15,14 @@ function nodeText(node: ReactNode): string {
   if (Array.isArray(node)) return node.map(nodeText).join("");
   if (isValidElement<{ children?: ReactNode }>(node)) return nodeText(node.props.children);
   return "";
+}
+
+/** 将地址栏锚点滚动到当前文档中的真实元素。 */
+function scrollToHash(hash: string) {
+  if (!hash) { scrollTo({ top: 0, behavior: "smooth" }); return; }
+  let id = hash.replace(/^#/, "");
+  try { id = decodeURIComponent(id); } catch {}
+  document.getElementById(id)?.scrollIntoView();
 }
 
 /** 带复制按钮的代码块。 */
@@ -42,6 +46,7 @@ function Changelog() {
 }
 
 const orderedIds = generated.navigation.flatMap((group) => group.items).filter((item) => item.path.endsWith(".md")).map((item) => item.path.replace(/\.md$/, ""));
+const pageIds = new Set(Object.keys(generated.docs));
 
 export default function Home() {
   const [page, setPage] = useState("index");
@@ -57,9 +62,9 @@ export default function Home() {
       setPage(requested === "overview" ? "index" : requested);
     };
     readLocation();
-    setDark(localStorage.getItem("pi-theme") === "dark");
+    const themeFrame = requestAnimationFrame(() => setDark(localStorage.getItem("pi-theme") === "dark"));
     addEventListener("popstate", readLocation);
-    return () => removeEventListener("popstate", readLocation);
+    return () => { cancelAnimationFrame(themeFrame); removeEventListener("popstate", readLocation); };
   }, []);
 
   useEffect(() => {
@@ -76,14 +81,20 @@ export default function Home() {
     return () => removeEventListener("keydown", handleKey);
   }, []);
 
+  useEffect(() => {
+    if (!location.hash) return;
+    const frame = requestAnimationFrame(() => scrollToHash(location.hash));
+    return () => cancelAnimationFrame(frame);
+  }, [page]);
+
   const go = (id: string, hash = "") => {
     const safeId = id in generated.docs || id === "changelog" ? id : "index";
     setPage(safeId);
     setMenuOpen(false);
     setSearchOpen(false);
-    const target = safeId === "index" ? location.pathname : `${location.pathname}?page=${safeId}`;
+    const target = safeId === "index" ? location.pathname : `${location.pathname}?page=${encodeURIComponent(safeId)}`;
     history.pushState({}, "", `${target}${hash}`);
-    requestAnimationFrame(() => hash ? document.getElementById(hash.slice(1))?.scrollIntoView() : scrollTo({ top: 0, behavior: "smooth" }));
+    requestAnimationFrame(() => scrollToHash(hash));
   };
 
   const current = page in generated.docs ? generated.docs[page as keyof typeof generated.docs] as Doc : null;
@@ -93,21 +104,27 @@ export default function Home() {
     return Object.entries(generated.docs).filter(([, doc]) => `${doc.title}\n${doc.description}\n${doc.markdown}`.toLowerCase().includes(needle)).slice(0, 12);
   }, [query]);
 
+  const headingIds = current?.headingIds as Record<string, string> | undefined;
+  const headingId = (line: number | undefined, children: ReactNode) => line ? (headingIds?.[String(line)] ?? slugifyHeading(nodeText(children))) : slugifyHeading(nodeText(children));
   const components: Components = {
-    h1: ({ children }) => <h1>{children}</h1>,
-    h2: ({ children }) => { const id = slugify(nodeText(children)); return <h2 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h2>; },
-    h3: ({ children }) => { const id = slugify(nodeText(children)); return <h3 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h3>; },
-    h4: ({ children }) => { const id = slugify(nodeText(children)); return <h4 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h4>; },
+    h1: ({ children, node }) => { const id = headingId(node?.position?.start.line, children); return <h1 id={id}>{children}</h1>; },
+    h2: ({ children, node }) => { const id = headingId(node?.position?.start.line, children); return <h2 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h2>; },
+    h3: ({ children, node }) => { const id = headingId(node?.position?.start.line, children); return <h3 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h3>; },
+    h4: ({ children, node }) => { const id = headingId(node?.position?.start.line, children); return <h4 id={id}><a href={`#${id}`}>{children}<em>#</em></a></h4>; },
     pre: ({ children }) => <CodeBlock>{children}</CodeBlock>,
-    a: ({ href = "", children, ...props }) => {
-      const internal = /^\.\/?[^:/?#]+\.md(?:#.*)?$/.test(href);
-      if (internal) {
-        const [file, anchor] = href.replace(/^\.\//, "").split("#");
-        const id = file.replace(/\.md$/, "");
-        const hash = anchor ? `#${anchor}` : "";
-        return <a {...props} href={`?page=${id}${hash}`} onClick={(event) => { event.preventDefault(); go(id, hash); }}>{children}</a>;
+    a: ({ href, children, node, ...props }) => {
+      void node;
+      const resolved = resolveDocHref(href ?? "", {
+        pageIds,
+        currentPage: current?.path.replace(/\.md$/, "") ?? "index",
+        source: generated.source,
+      });
+      if (resolved.kind === "empty") return <a {...props}>{children}</a>;
+      if (resolved.kind === "invalid") return <span>{children}</span>;
+      if (resolved.kind === "internal" && resolved.pageId) {
+        return <a {...props} href={resolved.href} onClick={(event) => { event.preventDefault(); go(resolved.pageId!, resolved.hash); }}>{children}</a>;
       }
-      return <a {...props} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined}>{children}</a>;
+      return <a {...props} href={resolved.href} target={resolved.openInNewTab ? "_blank" : undefined} rel={resolved.openInNewTab ? "noreferrer" : undefined}>{children}</a>;
     },
     img: ({ src = "", alt = "", ...props }) => <img {...props} src={src.startsWith("images/") ? `./docs-images/${src.slice(7)}` : src} alt={alt} loading="lazy" />,
   };
@@ -125,3 +142,4 @@ export default function Home() {
     {menuOpen && <button className="backdrop" aria-label="关闭菜单" onClick={() => setMenuOpen(false)} />}
   </div>;
 }
+

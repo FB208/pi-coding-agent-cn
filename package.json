@@ -5,13 +5,14 @@
   "engines": { "node": ">=22.13.0" },
   "scripts": {
     "docs:generate": "node scripts/generate-docs.mjs",
-    "dev": "npm run docs:generate && node scripts/run-vinext.mjs dev",
-    "build": "npm run docs:generate && node scripts/run-vinext.mjs build",
-    "dev:pages": "npm run docs:generate && vite --config vite.pages.config.ts",
-    "build:pages": "npm run docs:generate && vite build --config vite.pages.config.ts",
+    "docs:check": "node scripts/validate-doc-links.mjs",
+    "dev": "npm run docs:generate && npm run docs:check && node scripts/run-vinext.mjs dev",
+    "build": "npm run docs:generate && npm run docs:check && node scripts/run-vinext.mjs build",
+    "dev:pages": "npm run docs:generate && npm run docs:check && vite --config vite.pages.config.ts",
+    "build:pages": "npm run docs:generate && npm run docs:check && vite build --config vite.pages.config.ts",
     "start": "node scripts/run-vinext.mjs start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "test": "npm run build && node --test \"tests/*.test.mjs\"",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern dist-pages --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
@@ -43,3 +44,4 @@
   },
   "type": "module"
 }
+
