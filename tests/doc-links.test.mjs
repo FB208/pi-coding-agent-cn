@@ -1,16 +1,17 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { createHeadingSlugger, resolveDocHref } from "../lib/doc-links.mjs";
 import { validateDocLinks } from "../scripts/validate-doc-links.mjs";
 
+const root = new URL("../", import.meta.url);
+const source = JSON.parse(await readFile(new URL("content/source.json", root), "utf8"));
+const navigation = JSON.parse(await readFile(new URL("content/navigation.json", root), "utf8"));
+const documentedPageIds = navigation.flatMap((group) => group.items).filter((item) => item.path.endsWith(".md")).map((item) => item.path.replace(/\.md$/, ""));
 const context = {
   pageIds: new Set(["index", "quickstart", "usage", "tui"]),
   currentPage: "index",
-  source: {
-    repository: "https://github.com/earendil-works/pi",
-    commit: "e022eec37dee52790564f3af93819c34f3f78af1",
-    docsPath: "packages/coding-agent/docs",
-  },
+  source,
 };
 
 test("所有常见站内地址均转换为查询式中文文档路由", () => {
@@ -40,11 +41,11 @@ test("用户报告的复合错误地址可恢复到正确中文页面", () => {
 test("相对源码链接固定到当前上游提交", () => {
   assert.equal(
     resolveDocHref("../examples/sdk/02-custom-model.ts", context).href,
-    "https://github.com/earendil-works/pi/blob/e022eec37dee52790564f3af93819c34f3f78af1/packages/coding-agent/examples/sdk/02-custom-model.ts",
+    `${source.repository}/blob/${source.commit}/packages/coding-agent/examples/sdk/02-custom-model.ts`,
   );
   assert.equal(
     resolveDocHref("../examples/sdk/", context).href,
-    "https://github.com/earendil-works/pi/tree/e022eec37dee52790564f3af93819c34f3f78af1/packages/coding-agent/examples/sdk",
+    `${source.repository}/tree/${source.commit}/packages/coding-agent/examples/sdk`,
   );
 });
 
@@ -57,10 +58,8 @@ test("标题锚点保留下划线并为重复标题编号", () => {
 
 test("生成后的全部文档链接与锚点通过校验", async () => {
   const report = await validateDocLinks();
-  assert.deepEqual(report, {
-    pages: 28,
-    links: 307,
-    counts: { internal: 82, anchor: 90, source: 18, external: 117 },
-  });
+  assert.equal(report.pages, documentedPageIds.length);
+  assert.equal(report.links, Object.values(report.counts).reduce((sum, count) => sum + count, 0));
+  assert.deepEqual(Object.keys(report.counts).sort(), ["anchor", "external", "internal", "source"]);
 });
 

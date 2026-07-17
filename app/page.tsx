@@ -38,7 +38,7 @@ function CodeBlock({ children }: { children?: ReactNode }) {
 
 /** 中文文档变更日志页面。 */
 function Changelog() {
-  return <article className="changelog"><h1>中文文档变更日志</h1><p className="lead">记录中文文档基线、上游版本以及每次同步带来的页面变化。</p>{generated.changelog.map((entry) => <section key={`${entry.date}-${entry.version}`}>
+  return <article className="changelog"><h1>中文文档变更日志</h1><p className="lead">记录中文文档基线、上游版本以及每次同步带来的页面变化。</p>{generated.changelog.map((entry) => <section key={`${entry.date}-${entry.version}-${entry.commit}`}>
     <div className="releaseHead"><div><time>{entry.date}</time><h2>Pi {entry.version}</h2></div><code>{entry.commit.slice(0, 8)}</code></div>
     <p>{entry.summary}</p>
     {(["added", "changed", "removed"] as const).map((kind) => entry[kind].length ? <div className={`changeGroup ${kind}`} key={kind}><strong>{{ added: "新增", changed: "调整", removed: "移除" }[kind]}</strong><ul>{entry[kind].map((item) => <li key={item}>{item}</li>)}</ul></div> : null)}

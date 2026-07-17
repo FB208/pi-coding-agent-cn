@@ -7,10 +7,11 @@ const contentRoot = new URL("content/", root);
 const docsRoot = new URL("docs/", contentRoot);
 async function json(url) { return JSON.parse(await readFile(url, "utf8")); }
 
-test("官方导航中的 28 个页面均有完整中文 Markdown", async () => {
+test("官方导航中的全部页面均有完整中文 Markdown", async () => {
   const navigation = await json(new URL("navigation.json", contentRoot));
   const items = navigation.flatMap((group) => group.items).filter((item) => item.path.endsWith(".md"));
-  assert.equal(items.length, 28);
+  assert.ok(items.length > 0, "导航中没有文档页面");
+  assert.equal(new Set(items.map((item) => item.path)).size, items.length, "导航包含重复页面");
   for (const item of items) {
     const markdown = await readFile(new URL(item.path, docsRoot), "utf8");
     assert.match(markdown, /^#\s+.+/m, `${item.path} 缺少一级标题`);
@@ -33,13 +34,18 @@ test("所有站内文档链接与图片均指向实际资源", async () => {
   }
 });
 
-test("生成数据包含固定上游版本与站内变更日志", async () => {
-  const generated = await json(new URL("app/generated-docs.json", root));
-  assert.equal(generated.source.version, "0.80.8");
-  assert.equal(generated.source.commit, "e022eec37dee52790564f3af93819c34f3f78af1");
-  assert.equal(Object.keys(generated.docs).length, 28);
+test("生成数据与当前上游基线一致并包含站内变更日志", async () => {
+  const [generated, source, navigation] = await Promise.all([
+    json(new URL("app/generated-docs.json", root)),
+    json(new URL("source.json", contentRoot)),
+    json(new URL("navigation.json", contentRoot)),
+  ]);
+  const pageCount = navigation.flatMap((group) => group.items).filter((item) => item.path.endsWith(".md")).length;
+  assert.deepEqual(generated.source, source);
+  assert.equal(Object.keys(generated.docs).length, pageCount);
   assert.ok(generated.navigation.some((group) => group.items.some((item) => item.path === "changelog")));
-  assert.ok(generated.changelog.some((entry) => entry.version === generated.source.version));
+  assert.ok(generated.changelog.length > 0);
+  assert.equal(new Set(generated.changelog.map((entry) => entry.commit)).size, generated.changelog.length, "变更日志包含重复提交");
 });
 
 test("两套构建产物存在且不包含旧启动骨架", async () => {

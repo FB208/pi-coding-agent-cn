@@ -36,22 +36,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --ignore-scripts
 
-      - name: Sync and translate upstream docs
+      - name: Incrementally sync, verify, and build docs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TRANSLATION_MODEL: openai/gpt-4.1
         run: node scripts/sync-upstream.mjs
-
-      - name: Normalize and validate translations
-        run: |
-          node scripts/normalize-translations.mjs
-          node scripts/validate-doc-structure.mjs
-
-      - name: Build both deployment targets
-        run: |
-          npm run build:pages
-          npm run build
-          node --test tests/rendered-html.test.mjs
 
       - name: Commit synchronized documentation
         run: |

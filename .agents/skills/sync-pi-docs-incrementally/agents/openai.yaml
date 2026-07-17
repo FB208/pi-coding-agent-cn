@@ -1,0 +1,7 @@
+interface:
+  display_name: "增量同步 Pi 中文文档"
+  short_description: "对比官方 Pi 仓库，仅翻译变化章节并生成中文变更日志"
+  default_prompt: "使用 $sync-pi-docs-incrementally 对比官方 Pi 仓库，只更新发生变化的中文文档章节并生成变更日志。"
+
+policy:
+  allow_implicit_invocation: true

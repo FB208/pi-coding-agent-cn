@@ -39,4 +39,4 @@ for (const [file, source] of Object.entries(structure)) {
   }
 }
 if (failed) process.exitCode = 1;
-else console.log(`28 个中文页面的标题结构与官方源文档一致。`);
+else console.log(`${Object.keys(structure).length} 个中文页面的标题结构与官方源文档一致。`);
