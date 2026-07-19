@@ -37,6 +37,7 @@
 | 命令 | 说明 |
 |---------|-------------|
 | `/login`、`/logout` | 管理 OAuth 或 API 密钥凭据 |
+| [`/llama`](llama-cpp.md) | 下载、加载和卸载 llama.cpp 路由器模型 |
 | `/model` | 切换模型 |
 | `/scoped-models` | 为 Ctrl+P 循环切换启用/禁用模型 |
 | `/settings` | 思考级别、主题、消息递送和传输方式 |

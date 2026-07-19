@@ -110,7 +110,7 @@
     ]
   },
   "custom-provider.md": {
-    "sha256": "8315bd0da07306f4319fe77c4d55b1c99418b0034578b0e71172235148bd4b24",
+    "sha256": "2b1ba3777d74e88596bf677b9f009f8b04ad98e9a1d0d35a206456dfcf21e640",
     "headings": [
       {
         "level": 1,
@@ -240,7 +240,7 @@
     ]
   },
   "extensions.md": {
-    "sha256": "73dbed9fd124f71eac18d76f08962d3a00c6b0a239f9c26fbebf91fbb1704d2d",
+    "sha256": "6e5a3b2f08bd3fd9233b877185e10d809be995a868ad4aeaf3826249cb1a9a72",
     "headings": [
       {
         "level": 1,
@@ -725,7 +725,7 @@
     ]
   },
   "index.md": {
-    "sha256": "24cf68d6d92e399f6bec4be10957bd763914ff75a0d4220ef51569e7c160c6e6",
+    "sha256": "019dad711f0beee05694690137a07a725806fd3aad60586d116b64953e66f9db",
     "headings": [
       {
         "level": 1,
@@ -860,7 +860,7 @@
     ]
   },
   "models.md": {
-    "sha256": "d3399617170c6670bd9b9b7ac7a2105f90f79b3bf505e74eb41547937953a347",
+    "sha256": "0d55e3f1afef2dfb70f7aae919c7540e63e679ed5a10453632693be61b628f16",
     "headings": [
       {
         "level": 1,
@@ -990,7 +990,7 @@
     ]
   },
   "prompt-templates.md": {
-    "sha256": "0346823712eb033333a5d5bab1ea17a3e70a911670db1342df0df0c8bc75bdc4",
+    "sha256": "972bc0b5461d9140fd543b837abb9b4984e59be66182cbb4f72de894d916dbcb",
     "headings": [
       {
         "level": 1,
@@ -1023,7 +1023,7 @@
     ]
   },
   "providers.md": {
-    "sha256": "7e3cbbe5e83b408e76717e3244848db6b623266d6a09d113f4dc8f4499268b75",
+    "sha256": "3a1ecdd9e116db8466c7cbcc63547dcd7d5e39100341ffc7b0f5bdbea091ba59",
     "headings": [
       {
         "level": 1,
@@ -1096,6 +1096,10 @@
       {
         "level": 3,
         "id": "google-vertex-ai"
+      },
+      {
+        "level": 2,
+        "id": "llamacpp"
       },
       {
         "level": 2,
@@ -2221,7 +2225,7 @@
     ]
   },
   "tui.md": {
-    "sha256": "9efd6c375da2e0c060b7be0253771873c119cd6e5b1b24a4bfb07082592ae110",
+    "sha256": "0d73727b3c1870d92bee8a90a8c2d5c957e3a4316dcaf4adc170f2cbcd82013e",
     "headings": [
       {
         "level": 1,
@@ -2374,7 +2378,7 @@
     ]
   },
   "usage.md": {
-    "sha256": "35e4036c63b529c08271d58c365f4e792dc86860a7bffd3ad7dd1a52e1d740cc",
+    "sha256": "666e5ced61a2020d61ccf1f7c11c6bc0f105159b81bdde51c826d211b0da4899",
     "headings": [
       {
         "level": 1,
@@ -2476,6 +2480,31 @@
       {
         "level": 2,
         "id": "custom-shell-path"
+      }
+    ]
+  },
+  "llama-cpp.md": {
+    "sha256": "0fb4d8c4ef870053296d45bfddb76ac4dba5a5fb1c0de52a89e466f2861fc5de",
+    "headings": [
+      {
+        "level": 1,
+        "id": "llamacpp"
+      },
+      {
+        "level": 2,
+        "id": "start-the-router"
+      },
+      {
+        "level": 2,
+        "id": "configure-pi"
+      },
+      {
+        "level": 2,
+        "id": "manage-models"
+      },
+      {
+        "level": 2,
+        "id": "troubleshooting"
       }
     ]
   }

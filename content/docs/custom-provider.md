@@ -34,10 +34,38 @@
 <a id="quick-reference"></a>
 ## 快速参考
 
+扩展既可以注册完整的 pi-ai `Provider`，也可以使用旧版 Provider 配置形式。如果需要自定义身份验证、过滤、刷新或流式传输行为，请优先使用完整 Provider。Pi 会在已注册的原生 Provider 之上叠加 `models.json` 覆盖项。
+
 ```typescript
+import { createProvider, openAICompletionsApi } from "@earendil-works/pi-ai";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 export default function (pi: ExtensionAPI) {
+  pi.registerProvider(createProvider({
+    id: "native-local",
+    name: "Native Local",
+    baseUrl: "http://localhost:8080/v1",
+    auth: {
+      apiKey: {
+        name: "Local server API key",
+        async login(interaction) {
+          return {
+            type: "api_key",
+            key: await interaction.prompt({ type: "secret", message: "API key" })
+          };
+        },
+        async resolve({ credential }) {
+          return credential?.key
+            ? { auth: { apiKey: credential.key }, source: "stored API key" }
+            : undefined;
+        }
+      }
+    },
+    models: [],
+    api: openAICompletionsApi()
+  }));
+
+  // Legacy provider-config form:
   // Override baseUrl for existing provider
   pi.registerProvider("anthropic", {
     baseUrl: "https://proxy.example.com"
@@ -64,7 +92,7 @@ export default function (pi: ExtensionAPI) {
 }
 ```
 
-扩展工厂也可以是`async`。对于动态模型发现，请在工厂中获取并注册模型，而不是`session_start`。 pi 在启动继续之前等待工厂，因此提供程序在交互式启动期间和`pi --list-models`可用。
+扩展工厂也可以是 `async`。对于动态模型发现，请在工厂中获取并注册模型，而不是使用 `session_start`。pi 会等待工厂完成后再继续启动，因此该 Provider 在交互式启动期间以及执行 `pi --list-models` 时均可用。
 
 <a id="override-existing-provider"></a>
 ## 覆盖现有提供者
