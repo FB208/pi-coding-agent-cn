@@ -983,7 +983,7 @@ ctx.sessionManager.getLeafId()              // Current leaf entry ID
 
 ### ctx.modelRegistry / ctx.model
 
-访问模型和 API 密钥。
+访问模型、Provider 和已解析的身份验证信息。`ctx.modelRegistry.getProvider(id)` 返回有效的 pi-ai Provider；`getProviderAuth(id)` 无需已加载模型即可解析其当前 API 密钥、标头、基础 URL 和 Provider 作用域环境。`ctx.model` 是当前活动模型。
 
 ### ctx.signal
 
@@ -1694,7 +1694,37 @@ pi.events.emit("my:event", { ... });
 
 动态 Provider 可以实现 `refreshModels`。Pi 在模型刷新期间调用它，通过 Provider 同步发布返回的列表，并传入规范的凭证/存储/网络/信号上下文。扩展通过 `context.store` 决定是否持久化目录；如 llama.cpp 等实时服务器可以忽略它。
 
+需要原生 Provider 身份验证、过滤、刷新或流式行为的扩展，可以注册来自 `@earendil-works/pi-ai` 的完整 `Provider`。该 Provider 会成为组合基础，`models.json` 覆盖项仍会应用在它之上。
+
 ```typescript
+import { createProvider, openAICompletionsApi } from "@earendil-works/pi-ai";
+
+const provider = createProvider({
+  id: "local-server",
+  name: "Local Server",
+  baseUrl: "http://localhost:8080/v1",
+  auth: {
+    apiKey: {
+      name: "Local server setup",
+      async login(interaction) {
+        return {
+          type: "api_key",
+          key: await interaction.prompt({ type: "secret", message: "API key" }),
+        };
+      },
+      async resolve({ credential }) {
+        return credential?.key
+          ? { auth: { apiKey: credential.key }, source: "stored API key" }
+          : undefined;
+      },
+    },
+  },
+  models: [],
+  api: openAICompletionsApi(),
+});
+
+pi.registerProvider(provider);
+
 // Register a new provider with custom models
 pi.registerProvider("my-proxy", {
   name: "My Proxy",
@@ -1763,7 +1793,9 @@ pi.registerProvider("corporate-ai", {
 });
 ```
 
-**配置选项：**
+对象形式接受完整的 pi-ai `Provider`，包括原生 `auth`、`getModels`、`refreshModels`、`filterModels`、`stream` 和 `streamSimple` 行为。
+
+**旧版配置选项：**
 
 - `name` - Provider 在 UI 中（如 `/login`）的显示名称。
 - `baseUrl` - API 端点 URL。定义模型时需要。
@@ -2734,8 +2766,8 @@ class VimEditor extends CustomEditor {
 
 export default function (pi: ExtensionAPI) {
   pi.on("session_start", (_event, ctx) => {
-    ctx.ui.setEditorComponent((_tui, theme, keybindings) =>
-      new VimEditor(theme, keybindings)
+    ctx.ui.setEditorComponent((tui, theme, keybindings) =>
+      new VimEditor(tui, theme, keybindings)
     );
   });
 }
@@ -2745,7 +2777,7 @@ export default function (pi: ExtensionAPI) {
 
 - 继承 `CustomEditor`（而不是基础的 `Editor`）以获得应用快捷键（Escape 中止、ctrl+d、模型切换）
 - 对于您不处理的按键，调用 `super.handleInput(data)`
-- 工厂函数从应用接收 `theme` 和 `keybindings`
+- 工厂函数从应用接收 `tui`、`theme` 和 `keybindings`
 - 在 `setEditorComponent()` 前使用 `ctx.ui.getEditorComponent()` 来包装先前配置的自定义编辑器
 - 传递 `undefined` 以恢复默认：`ctx.ui.setEditorComponent(undefined)`
 

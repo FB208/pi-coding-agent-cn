@@ -41,6 +41,7 @@ pi
 - [快速入门](quickstart.md) - 安装、身份验证并运行第一个会话。
 - [使用 Pi](usage.md) - 交互模式、斜杠命令、上下文文件和 CLI 参考。
 - [提供商](providers.md) - 内置提供商的订阅和 API 密钥设置。
+- [llama.cpp](llama-cpp.md) - 运行本地路由器，并使用 `/llama` 管理模型。
 - [安全](security.md) - 项目信任、沙箱边界和漏洞报告。
 - [容器化](containerization.md) - 使用 Gondolin、Docker 或 OpenShell 对 pi 进行沙箱隔离。
 - [设置](settings.md) - 全局和项目设置。
