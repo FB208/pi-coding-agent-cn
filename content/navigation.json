@@ -1,6 +1,6 @@
 [
   {"title":"从这里开始","items":[
-    {"title":"概览","path":"index.md"},{"title":"快速开始","path":"quickstart.md"},{"title":"使用 Pi","path":"usage.md"},{"title":"提供商","path":"providers.md"},{"title":"安全","path":"security.md"},{"title":"容器化","path":"containerization.md"},{"title":"设置","path":"settings.md"},{"title":"快捷键","path":"keybindings.md"},{"title":"会话","path":"sessions.md"},{"title":"上下文压缩","path":"compaction.md"}
+    {"title":"概览","path":"index.md"},{"title":"快速开始","path":"quickstart.md"},{"title":"使用 Pi","path":"usage.md"},{"title":"提供商","path":"providers.md"},{"title":"llama.cpp","path":"llama-cpp.md"},{"title":"安全","path":"security.md"},{"title":"容器化","path":"containerization.md"},{"title":"设置","path":"settings.md"},{"title":"快捷键","path":"keybindings.md"},{"title":"会话","path":"sessions.md"},{"title":"上下文压缩","path":"compaction.md"}
   ]},
   {"title":"自定义","items":[
     {"title":"扩展","path":"extensions.md"},{"title":"技能","path":"skills.md"},{"title":"提示词模板","path":"prompt-templates.md"},{"title":"主题","path":"themes.md"},{"title":"Pi 包","path":"packages.md"},{"title":"自定义模型","path":"models.md"},{"title":"自定义提供商","path":"custom-provider.md"}
