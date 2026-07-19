@@ -47,7 +47,7 @@
 
 ## 日志与状态
 
-`content/changelog.json` 沿用 `date`、`version`、`commit`、`summary`、`added`、`changed`、`removed`。同一目标 SHA 不得重复记录。记录只来自本次 compare 事实。
+`content/changelog.json` 沿用 `date`、`version`、`commit`、`summary`、`added`、`changed`、`removed`。同一目标 SHA 不得重复记录。记录只来自本次 compare 事实。数组必须按日期倒排，最新记录位于最上方；本次同步条目必须前插到索引 `0`，不得追加到尾部或重排既有的同日历史记录。写入后必须验证日期序列单调不增且第一项是本次新条目。
 
 若基线不同但只有无关代码变化，可只更新 `content/source.json.commit` 与同步日期；仍需通过所有云端验证、自动合并并发布两套站点。若没有任何变化，不创建提交、分支、PR 或新 Site 版本。
 
