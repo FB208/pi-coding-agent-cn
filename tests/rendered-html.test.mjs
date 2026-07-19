@@ -46,6 +46,8 @@ test("生成数据与当前上游基线一致并包含站内变更日志", async
   assert.ok(generated.navigation.some((group) => group.items.some((item) => item.path === "changelog")));
   assert.ok(generated.changelog.length > 0);
   assert.equal(new Set(generated.changelog.map((entry) => entry.commit)).size, generated.changelog.length, "变更日志包含重复提交");
+  const dates = generated.changelog.map((entry) => entry.date);
+  assert.deepEqual(dates, [...dates].sort((a, b) => b.localeCompare(a)), "变更日志必须按日期倒排，最新记录在顶部");
 });
 
 test("两套构建产物存在且不包含旧启动骨架", async () => {
